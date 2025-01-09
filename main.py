@@ -84,6 +84,5 @@ def main() -> None:
         else:
             print("That is not a valid answer.")
     
-    
 if __name__ == "__main__":
     main()
