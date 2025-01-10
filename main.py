@@ -4,8 +4,8 @@ CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace']
 
 class Card:
     def __init__(self):
-        self.name = random.choice(CARDS)
-        self.value = None
+        self.name: str | int = random.choice(CARDS)
+        self.value: int = None
 
 def card_math(cards: list[Card], total: int = 0, seen_ace = False) -> tuple[int, bool]:
     for card in cards:
