@@ -1,4 +1,4 @@
-import card_list
+import src.card_list as card_list
 import random
 
 deck_of_cards = card_list.generate_cards()
