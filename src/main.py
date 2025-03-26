@@ -4,25 +4,25 @@ CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace']
 
 class Card:
     def __init__(self):
-        self.name: str | int = random.choice(CARDS)
-        self.value: int = None
+        self.name = random.choice(CARDS)
+        self.value = None
 
-def card_math(cards: list[Card], total: int = 0, seen_ace = False) -> tuple[int, bool]:
+def card_math(cards: list[Card], total: int = 0, ace_count: int = 0) -> tuple[int, int]:
     for card in cards:
-        if card.name == 'Jack' or card.name == 'Queen' or card.name == 'King':
+        if card.name in ['Jack', 'Queen', 'King']:
             card.value = 10
         elif card.name == "Ace":
             card.value = 11
-            seen_ace = True
+            ace_count += 1
         else:
             card.value = card.name
         total += card.value
     
-    if total > 21 and seen_ace:
+    while total > 21 and ace_count > 0:
         total -= 10
+        ace_count -= 1
     
-    return total, seen_ace
-        
+    return total, ace_count      
 
 def play_game() -> None:
     user_card1 = Card()
@@ -62,7 +62,9 @@ def play_game() -> None:
             new_card = Card()
             com_total, com_ace = card_math([new_card], com_total, com_ace)
             print(f"The computer drew a {new_card.name}. Computer total: {com_total}")
-        
+            if com_total > 21:
+                print("Computer busted! You win!")
+            return
         if com_total == user_total:
             print(f"The computer and user both have {user_total}. This is a push!")
         elif com_total > user_total:
