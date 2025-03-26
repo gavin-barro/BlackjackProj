@@ -75,7 +75,7 @@ def play_game() -> None:
 def main() -> None:
     played = False
     while True:
-        user_input = input("Would you like to play blackjack (y/n): ").lower()
+        user_input = input("Would you like to play Blackjack? (y/n): ").lower()
         if user_input == 'y':
             play_game()
             played = True
